@@ -44,7 +44,7 @@
         <div class="container mb-5">
              <div class="row mt-5 d-flex justify-content-center">
                 <div class="col-12 col-md-5">
-                    <h3 class="fuente2 fw-bold text-center">Registro de productos</h3>
+                    <h3 class="aria-current text-center">Registro de productos</h3>
                     
                     <form action="<?= site_url('/productos/registro/nuevo')?>" method="POST" class="mt-4">
                         <div class="mb-3">
@@ -88,7 +88,7 @@
                 </div>
                 <div class="col-12 col-md-5 align-self-end">
                     <img src="<?= base_url('public/img/productos.jpg')?>" alt="imagen" class="img-fluid w-100">
-					<a href="<?= site_url('/productos/listado') ?>" style="width: 100%;" class="btn btn-primary">ver inventario</a>
+					<a href="<?= site_url('/productos/listado') ?>" style="width: 100%;" class="btn btn-primary">Ver inventario</a>
 				</div>
             </div>
         </div>

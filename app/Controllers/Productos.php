@@ -35,7 +35,7 @@ class Productos extends BaseController{
             try{
                 $modelo=new ProductoModelo();
                 $modelo->insert($datos);
-                return redirect()->to(site_url('/productos/registro'))->with('mensaje',"El registro fue exitoso");
+                return redirect()->to(site_url('/productos/registro'))->with('mensaje',"exito agregando el producto");
 
             }catch(\Exception $error){
                 return redirect()->to(site_url('/productos/registro'))->with('mensaje',$error->getMessage());
@@ -50,6 +50,7 @@ class Productos extends BaseController{
 
     public function buscar(){
         try{
+
             $modelo=new ProductoModelo();
             $resultado=$modelo->findAll();
             $productos=array('productos'=>$resultado);
@@ -75,4 +76,25 @@ class Productos extends BaseController{
 
     }
 }
+
+    public function editar($id){
+        $producto=$this->request->getPost("producto");
+        $precio=$this->request->getPost("precio");
+
+        //validacion de dato
+
+        //organizar datos en un array asociativo
+        $datos = array(
+            'producto'=>$producto,
+            'precio'=>$precio
+        );
+        //crear un objeto del modelo
+        try {
+            $modelo=new ProductoModelo();
+            $modelo->update($id,$datos);
+            return redirect()->to(site_url('/productos/registro'))->with('mensaje',"exito");
+        }catch(\Exception $error){
+            return redirect()->to(site_url('/productos/registro'))->with('mensaje',$error -> getMenssage());
+        }
     }
+}

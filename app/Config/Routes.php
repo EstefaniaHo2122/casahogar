@@ -36,11 +36,14 @@ $routes->get('/productos/registro', 'Productos::index');
 $routes->post('/productos/registro/nuevo', 'Productos::registrar');
 $routes->get('/productos/listado', 'Productos::buscar');
 $routes->delete('/productos/eliminar/(:num)', 'Productos::eliminar/$1');
+$routes->post('/productos/editar/(:num)', 'Productos::editar/$1');
 
 $routes->get('/animales/registro', 'Animales::index');
 $routes->post('/animales/registro/nuevo', 'Animales::registrar');
 $routes->get('/animales/listado', 'Animales::buscar');
 $routes->delete('/animales/eliminar/(:num)', 'Animales::eliminar/$1');
+$routes->post('/animales/editar/(:num)', 'Animales::editar/$1');
+
 
 
 /*

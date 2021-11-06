@@ -44,7 +44,7 @@
         <div class="container mb-5">
              <div class="row mt-5 d-flex justify-content-center">
                 <div class="col-12 col-md-5">
-                    <h3 class="fuente2 fw-bold text-center">Registro de animales</h3>
+                    <h3 class="aria-current text-center">Registro de animales</h3>
                     
                     <form action="<?= site_url('/animales/registro/nuevo')?>" method="POST" class="mt-4">
                         <div class="mb-3">
@@ -78,7 +78,7 @@
                     <div class="raw" style="display:flex">
                             <button class="btn boton align-items-center"  style="width:50%;" type="submit">Guardar</button>
 							
-							<a style="width:50%;margin-left:10px" href="<?= site_url('/animales/listado') ?>" class="btn btn-primary align-items-center">ver inventario</a>
+							<a style="width:50%;margin-left:10px" href="<?= site_url('/animales/listado') ?>" class="btn btn-primary align-items-center">Ver inventario</a>
                         </div>
                         
                     </form>

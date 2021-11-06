@@ -47,45 +47,109 @@
                 <?php foreach($animales as $animal): ?>
                     <div class="col">
                         <div class="card h-100 p-3">
-                            <div class="card-body">
-                                    
+                            <div class="card-body">                                    
                                 <h5 class="card-title"><?= $animal["nombre"] ?></h5>
-                                <p class="card-text"><?= $animal["edad"] ?></p>
+                                <p class="card-text">Meses: <?= $animal["edad"] ?></p>
                                 <p class="card-text"><?= $animal["descripcion"] ?></p>
-                                <p class="card-text"><?= $animal["tipo"] ?></p>
-                                <a data-bs-toggle="modal" data-bs-target="#confirmacion<?=$animal["id"]?>"  href="#" class="btn btn-primary"><i class="fas fa-trash-alt"></i></a>
-                                <a href="#" class="btn btn-primary"><i class="fas fa-edit"></i></a>                               
-                                 
+                                
+                                <?php
+                                    if ($animal["tipo"] == 1) {
+                                        echo '<p class="card-text">Perro</p>';
+                                    }
+                                ?>
+                                <?php
+                                    if ($animal["tipo"] == 2) {
+                                        echo '<p class="card-text">Gato</p>';
+                                    }
+                                ?>
+                                <?php
+                                    if ($animal["tipo"] == 3) {
+                                        echo '<p class="card-text">Ave</p>';
+                                    }
+                                ?>
+                                <?php
+                                    if ($animal["tipo"] == 4) {
+                                        echo '<p class="card-text">Caballo</p>';
+                                    }
+                                ?>
+                                <?php
+                                    if ($animal["tipo"] == 5) {
+                                        echo '<p class="card-text">Reptil</p>';
+                                    }
+                                ?>
+                                <a data-bs-toggle="modal" data-bs-target="#confirmacion<?=$animal["id"]?>"  href="#" class="btn btn-primary"><i class="fas fa-trash-alt"></i></a>                                     
+                                <a data-bs-toggle="modal" data-bs-target="#editar<?=$animal["id"]?>" href="#" class="btn btn-primary"><i class="fas fa-edit"></i></a>                            
                             </div>
                         </div>
-                        <section>
-                            <div class="modal fade" id="confirmacion<?=$animal["id"]?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                <div class="modal-header fondoPrincipal text-white">
-                                    <h5 class="modal-title" id="exampleModalLabel">Casa hogar</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <section>
+                                <div class="modal fade" id="confirmacion<?=$animal["id"]?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                        <div class="modal-header fondoPrincipal text-white">
+                                            <h5 class="modal-title" id="exampleModalLabel">Casa hogar</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>¿Estás seguro de eleminar a: <?= $animal["nombre"] ?>?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                            <a href="<?= site_url('/animales/eliminar/'.$animal["id"])?>" class="btn btn-danger">Eliminar</a>
+                                        </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="modal-body">
-                                    <p>¿Estás seguro de eleminar este animal?</p>
-                                    <p><?= $animal["nombre"] ?></p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                    <a href="<?= site_url('/animales/eliminar/'.$animal["id"])?>" class="btn btn-danger">Eliminar</a>
-                                </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        </section>
+                            </section>
+                            <section>
+                                <div class="modal fade" id="editar<?=$animal["id"]?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header fondoPrincipal text-white">
+                                                <h5 class="modal-title" id="exampleModalLabel">Casa hogar</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                        <div class="modal-body">
+                                            <div class="row">                                    
+                                                <div class="col-9">
+                                                    <form action="<?= site_url('/animales/editar/')?>" method="POST">    
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Nombre:</label>
+                                                            <input type="text" class="form-control" name="nombre" value="<?= $animal["nombre"]?>">
+                                                        </div>                                        
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Edad:</label>
+                                                            <input type="number" class="form-control" name="edad" value="<?= $animal["edad"]?>">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Descripcion:</label>
+                                                            <input type="text" class="form-control" name="descripcion" value="<?= $animal["descripcion"]?>">
+                                                        </div><div class="mb-3">
+                                                            <label class="form-label">Tipo de animal:</label>
+                                                            
+                                                            <select class="form-select" name="tipo">
+                                                                <option value="1" selected>Perro</option>
+                                                                <option value="2">Gato</option>
+                                                                <option value="3">Ave</option>
+                                                                <option value="4">Caballo</option>
+                                                                <option value="5">Reptil</option>
+                                                            </select>
+                                                        </div>
+                                                        
+                                                        <button type="submit">Editar</button>
+                                                    </form>
+                                                </div>
+                                            </div>                                            
+                                        </div>
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </section>                        
                     </div>
                 <?php endforeach ?>
             </div>
         </div>
     </main>
-    
-
     <script src="https://kit.fontawesome.com/7b642ec699.js" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 </body>
